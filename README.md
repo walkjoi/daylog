@@ -1,96 +1,80 @@
 # Daylog
 
-A privacy-first mood tracking app that visualizes your emotional journey throughout the year. Data is encrypted and stored in your GitHub Gist—nothing is stored on our servers.
+A minimal, privacy-first mood tracking app with a year-in-pixels calendar view. Track your daily moods and sync your data securely to GitHub Gists.
 
 ## Features
 
-- **Year in Pixels** — Visual mood calendar showing your emotional state each day
-- **Encrypted Storage** — Your mood data is encrypted before being saved to GitHub
-- **GitHub Gist Backend** — Your data lives where you control it
-- **Offline Ready** — PWA with service worker for offline access
-- **No Account Required** — Just authenticate with GitHub and go
-- **Mobile Friendly** — Responsive design works on all devices
+- 📊 **Year-in-Pixels View** — See your entire year at a glance with color-coded mood entries
+- 🔐 **End-to-End Encrypted** — Your mood data is encrypted locally before syncing to GitHub
+- ☁️ **GitHub Gist Sync** — Store your data in your own GitHub account
+- 🎨 **Mood Tracking** — Rate each day on a 5-level mood scale (1-5)
+- 🌙 **Dark Mode** — Built-in theme toggle
+- 📱 **Progressive Web App** — Install as an app on your device
+- 🚀 **Fast & Lightweight** — Built with React, Vite, and TypeScript
 
-## Quick Start
+## Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- GitHub account (for Gist integration)
+
+### Installation
+
+```bash
+npm install
+```
 
 ### Development
 
 ```bash
-bun install
-bun run dev
+npm run dev
 ```
 
-The app runs on `http://localhost:5173` with hot module reloading.
+Opens at `http://localhost:5173`
 
-### Production Build
+### Build
 
 ```bash
-bun run build
+npm run build
 ```
 
-Outputs optimized static files to `build/`.
+### Preview
 
-## Setup
+```bash
+npm run preview
+```
 
-### 1. Provide GitHub Authentication
+## How It Works
 
-You can authenticate in two ways:
+1. **Setup** — Authenticate with GitHub using OAuth
+2. **Encrypt** — Set a password to encrypt your mood data
+3. **Track** — Log your mood each day (scale of 1-5)
+4. **Sync** — Automatic sync to a GitHub Gist with encrypted payload
+5. **View** — Visualize the entire year with the pixel calendar
 
-**Option A: Personal Access Token** (current implementation)
+Your encryption key is derived from your password using secure cryptographic functions. Only you can decrypt your data.
 
-- Create a [GitHub Personal Access Token](https://github.com/settings/tokens)
-- Minimum scope: `gist` (to read/write gists)
-- Paste token in Settings when prompted
+## Tech Stack
 
-**Option B: OAuth Device Flow** (in development)
-
-- Work in progress
-- Simpler user experience — one-click login instead of token pasting
-
-### 2. First Run
-
-1. Open the app and go to Settings
-2. Paste your GitHub token
-3. The app automatically creates a private gist named `daylog` for storing your mood data
-4. Start tracking your mood daily
+- **Frontend**: React 19, TypeScript, Tailwind CSS
+- **Build Tool**: Vite
+- **PWA**: Workbox
+- **Encryption**: Web Crypto API
+- **APIs**: GitHub OAuth, GitHub Gist API
 
 ## Project Structure
 
 ```
 src/
-  components/
-    DayCell.jsx         — Individual day mood cell
-    MoodPicker.jsx      — Mood selection UI
-    YearInPixels.jsx    — Calendar visualization
-    Settings.jsx        — Configuration & auth
-    Header.jsx          — App header
-  hooks/
-    useMoodData.js      — Mood data management
-  lib/
-    gist.js            — GitHub Gist API
-    crypto.js          — Encryption/decryption
-    oauth.js           — OAuth device flow (WIP)
-    storage.js         — Local storage utils
-  constants.js         — App configuration
-worker/
-  index.js             — Cloudflare Worker proxy (for OAuth)
+├── components/       # React components
+├── hooks/           # Custom React hooks
+├── lib/             # Utilities (crypto, gist, oauth, storage)
+├── assets/          # Static assets
+├── App.tsx          # Root component
+├── main.tsx         # Entry point
+└── types.ts         # TypeScript types
 ```
-
-## Technologies
-
-- **React 19** — UI framework
-- **Vite** — Build tool & dev server
-- **Tailwind CSS** — Styling
-- **PWA Plugin** — Progressive web app support
-- **Cloudflare Workers** — OAuth proxy (in development)
-
-## Privacy
-
-All mood data is encrypted client-side before being sent to GitHub. The encryption key is derived from your GitHub token and stored locally. We have zero access to your data.
-
-## Contributing
-
-Found a bug? Have a feature idea? Open an issue or pull request.
 
 ## License
 
