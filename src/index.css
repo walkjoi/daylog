@@ -1,0 +1,119 @@
+@import "tailwindcss";
+
+/* ── Light theme (default) ─────────────────────────────────────── */
+:root {
+  --bg-deep: #f5f5f7;
+  --bg-surface: #ffffff;
+  --bg-elevated: #eeeef0;
+  --text-primary: #1a1a1c;
+  --text-secondary: rgba(26, 26, 28, 0.55);
+  --text-tertiary: rgba(26, 26, 28, 0.30);
+  --accent: #6e6eff;
+  --accent-glow: rgba(110, 110, 255, 0.10);
+  --accent-hover: #5a5ae6;
+  --border: rgba(0, 0, 0, 0.08);
+  --border-focus: rgba(110, 110, 255, 0.5);
+
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --mood-great: #34c770;
+  --mood-good: #7cc535;
+  --mood-meh: #f0a020;
+  --mood-bad: #e8703a;
+  --mood-awful: #e85050;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+}
+
+/* ── Dark theme ────────────────────────────────────────────────── */
+[data-theme="dark"] {
+  --bg-deep: #1a1a1e;
+  --bg-surface: #222226;
+  --bg-elevated: #2a2a2f;
+  --text-primary: #e8e8ec;
+  --text-secondary: rgba(232, 232, 236, 0.55);
+  --text-tertiary: rgba(232, 232, 236, 0.30);
+  --accent: #8484ff;
+  --accent-glow: rgba(132, 132, 255, 0.12);
+  --accent-hover: #9a9aff;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-focus: rgba(132, 132, 255, 0.5);
+
+  --mood-great: #6ee7a0;
+  --mood-good: #a3e05c;
+  --mood-meh: #fbbf40;
+  --mood-bad: #f08c5a;
+  --mood-awful: #f06868;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: var(--font);
+  font-weight: 400;
+  background-color: var(--bg-deep);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ── Animations ────────────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes breathe {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.4s ease-out both;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.35s ease-out both;
+}
+
+.animate-breathe {
+  animation: breathe 2s ease-in-out infinite;
+}
+
+.delay-1 { animation-delay: 0.04s; }
+.delay-2 { animation-delay: 0.08s; }
+.delay-3 { animation-delay: 0.12s; }
+.delay-4 { animation-delay: 0.16s; }
+.delay-5 { animation-delay: 0.20s; }
+
+/* ── Input styling ─────────────────────────────────────────────── */
+input::placeholder {
+  color: var(--text-tertiary);
+  font-weight: 400;
+}
+
+input:focus {
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+/* ── Scrollbar ─────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+::selection {
+  background: var(--accent-glow);
+  color: var(--text-primary);
+}
